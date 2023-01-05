@@ -1,0 +1,1 @@
+pyinstaller -p . --onefile mainwindow.py

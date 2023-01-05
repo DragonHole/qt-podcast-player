@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>10</y>
+      <width>401</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="4" column="0">
+      <widget class="QPushButton" name="updateTableButton">
+       <property name="text">
+        <string>todo</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="openXMLButton">
+       <property name="text">
+        <string>Open the xml file</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Create New Window</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>20</y>
+      <width>181</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Podcast player</string>
+    </property>
+   </widget>
+   <widget class="DownloaderWidget" name="downloader" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>411</width>
+      <height>311</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="EpisodesWidget" name="episodes" native="true">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>60</y>
+      <width>281</width>
+      <height>361</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DownloaderWidget</class>
+   <extends>QWidget</extends>
+   <header>downloaderwidget</header>
+   <container>1</container>
+   <slots>
+    <signal>sendSelectedFilePathSignal()</signal>
+    <slot>onSendFilepathSignal()</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>EpisodesWidget</class>
+   <extends>QWidget</extends>
+   <header>episodeswidget</header>
+   <container>1</container>
+   <slots>
+    <slot>refreshEpisodesFromXML()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>createNewWindow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>349</x>
+     <y>179</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>openXMLButton</sender>
+   <signal>clicked()</signal>
+   <receiver>downloader</receiver>
+   <slot>onSendFilepathSignal()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>333</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>235</x>
+     <y>339</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>downloader</sender>
+   <signal>sendSelectedFilePathSignal()</signal>
+   <receiver>episodes</receiver>
+   <slot>refreshEpisodesFromXML()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>235</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>620</x>
+     <y>264</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>createNewWindow()</slot>
+ </slots>
+</ui>
