@@ -14,59 +14,13 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="gridLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>10</y>
-      <width>401</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="4" column="0">
-      <widget class="QPushButton" name="updateTableButton">
-       <property name="text">
-        <string>todo</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="openXMLButton">
-       <property name="text">
-        <string>Open the xml file</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>Create New Window</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>20</y>
-      <width>181</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Podcast player</string>
-    </property>
-   </widget>
    <widget class="DownloaderWidget" name="downloader" native="true">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>140</y>
-      <width>411</width>
-      <height>311</height>
+      <x>180</x>
+      <y>180</y>
+      <width>321</width>
+      <height>231</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -76,12 +30,72 @@
    <widget class="EpisodesWidget" name="episodes" native="true">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>60</y>
+      <x>510</x>
+      <y>180</y>
       <width>281</width>
       <height>361</height>
      </rect>
     </property>
+   </widget>
+   <widget class="MediaPlayerWidget" name="mediaplayer" native="true">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>0</y>
+      <width>641</width>
+      <height>61</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>168</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Create New Window</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QPushButton" name="updateTableButton">
+         <property name="text">
+          <string>todo...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QPushButton" name="openXMLButton">
+         <property name="text">
+          <string>Open the xml file</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <family>Arial Rounded MT Bold</family>
+           <pointsize>19</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Podcast player</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -93,8 +107,32 @@
      <height>24</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="actionQAction1"/>
+    <addaction name="actionQAction2"/>
+    <addaction name="actionQAction3"/>
+   </widget>
+   <addaction name="menuMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionQAction1">
+   <property name="text">
+    <string>QAction1</string>
+   </property>
+  </action>
+  <action name="actionQAction2">
+   <property name="text">
+    <string>QAction2</string>
+   </property>
+  </action>
+  <action name="actionQAction3">
+   <property name="text">
+    <string>QAction3</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -113,7 +151,17 @@
    <header>episodeswidget</header>
    <container>1</container>
    <slots>
+    <signal>sendSelectedMediaUrlSignal()</signal>
     <slot>refreshEpisodesFromXML()</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>MediaPlayerWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">mediaplayerwidget</header>
+   <container>1</container>
+   <slots>
+    <slot>setPlayingMedia()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -143,11 +191,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>333</x>
-     <y>129</y>
+     <y>249</y>
     </hint>
     <hint type="destinationlabel">
      <x>235</x>
-     <y>339</y>
+     <y>314</y>
     </hint>
    </hints>
   </connection>
@@ -159,11 +207,27 @@
    <hints>
     <hint type="sourcelabel">
      <x>235</x>
-     <y>319</y>
+     <y>314</y>
     </hint>
     <hint type="destinationlabel">
      <x>620</x>
      <y>264</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>episodes</sender>
+   <signal>sendSelectedMediaUrlSignal()</signal>
+   <receiver>mediaplayer</receiver>
+   <slot>setPlayingMedia()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>650</x>
+     <y>384</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>54</y>
     </hint>
    </hints>
   </connection>

@@ -2,14 +2,12 @@
 import sys
 import random
 
-from PySide6.QtCore import Slot
+from PySide6.QtCore import Slot, QSize
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QLabel, QPushButton
-
-#from downloaderwidget import DownloaderWidget
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
-#     pyside6-uic form.ui -o ui_form.py, or
+#     pyside6-uic form.ui -o src/ui_form.py, or
 #     pyside2-uic form.ui -o ui_form.py
 from ui_form import Ui_MainWindow
 
@@ -19,6 +17,7 @@ class MainWindow(QMainWindow):
         self.windows = []
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setFixedSize(QSize(800, 600))
     
     @Slot()
     def createNewWindow(self):

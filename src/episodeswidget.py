@@ -5,12 +5,10 @@ from PySide6.QtWidgets import (
     QMessageBox
 )
 
-from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
-
 from PySide6.QtGui import (QCursor, QDesktopServices, QGuiApplication, QIcon,
                            QKeySequence, QShortcut, QStandardItem,
                            QStandardItemModel)
-from PySide6.QtCore import Slot, QXmlStreamReader, QIODevice, QFile, Qt, QUrl
+from PySide6.QtCore import Slot, QXmlStreamReader, QIODevice, QFile, Qt, QUrl, Signal
 
 import xml.etree.ElementTree as ET
 
@@ -23,14 +21,12 @@ COMPUTER_ICON = ":/qt-project.org/styles/commonstyle/images/computer-32.png"
 
 
 class EpisodesWidget(QWidget):
+    sendSelectedMediaUrlSignal = Signal(QUrl)
+    
     def __init__(self, parent=None):
         super().__init__(parent)
 
         self.xml_file = None
-        self.player = QMediaPlayer()
-        self.audioOutput = QAudioOutput()
-        self.audioOutput.setVolume(50)
-        self.player.setAudioOutput(self.audioOutput)
 
         #self.list_model = QStandardItemModel(0, 1, self)
         self.list_model = EpisodesDataModel()
@@ -91,7 +87,6 @@ class EpisodesWidget(QWidget):
             QMessageBox.warning(self, "", "Not rss XML " + filePath)
         
         for child in root[0]:
-            print(child.tag, child.attrib)
             if child.tag == 'item':
                 episode_title = child.find("title").text
                 episode_mp3_url = child.find("enclosure").attrib['url']
@@ -106,6 +101,5 @@ class EpisodesWidget(QWidget):
         if selected_episodes:
             index = selected_episodes[0] # only play 1 selection
             episode_url = self.list_model.data(index, Qt.UserRole)
-            print(episode_url)
-            self.player.setSource(QUrl(episode_url))
-            self.player.play()
+            self.sendSelectedMediaUrlSignal.emit(episode_url)
+            print('sent signal')

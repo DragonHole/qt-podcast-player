@@ -31,7 +31,7 @@ class EpisodesDataModel(QAbstractItemModel):
         return self.createIndex(row, column, table_row)
 
     def parent(self, child): # todo: 
-        return None
+        return QModelIndex()
        # return self.createIndex(-1, -1, None)
 
     def clear(self):

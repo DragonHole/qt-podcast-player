@@ -11,77 +11,111 @@
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QLabel, QMainWindow,
-    QMenuBar, QPushButton, QSizePolicy, QStatusBar,
-    QWidget)
+from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
+from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
+    QMainWindow, QMenu, QMenuBar, QPushButton,
+    QSizePolicy, QStatusBar, QWidget)
 
 from downloaderwidget import DownloaderWidget
 from episodeswidget import EpisodesWidget
+from mediaplayerwidget import MediaPlayerWidget
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(800, 600)
+        self.actionQAction1 = QAction(MainWindow)
+        self.actionQAction1.setObjectName(u"actionQAction1")
+        self.actionQAction2 = QAction(MainWindow)
+        self.actionQAction2.setObjectName(u"actionQAction2")
+        self.actionQAction3 = QAction(MainWindow)
+        self.actionQAction3.setObjectName(u"actionQAction3")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.gridLayoutWidget = QWidget(self.centralwidget)
-        self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(30, 10, 401, 121))
-        self.gridLayout = QGridLayout(self.gridLayoutWidget)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.updateTableButton = QPushButton(self.gridLayoutWidget)
-        self.updateTableButton.setObjectName(u"updateTableButton")
-
-        self.gridLayout.addWidget(self.updateTableButton, 4, 0, 1, 1)
-
-        self.openXMLButton = QPushButton(self.gridLayoutWidget)
-        self.openXMLButton.setObjectName(u"openXMLButton")
-
-        self.gridLayout.addWidget(self.openXMLButton, 1, 0, 1, 1)
-
-        self.pushButton = QPushButton(self.gridLayoutWidget)
-        self.pushButton.setObjectName(u"pushButton")
-
-        self.gridLayout.addWidget(self.pushButton, 0, 0, 1, 1)
-
-        self.label = QLabel(self.centralwidget)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(560, 20, 181, 16))
         self.downloader = DownloaderWidget(self.centralwidget)
         self.downloader.setObjectName(u"downloader")
-        self.downloader.setGeometry(QRect(30, 140, 411, 311))
+        self.downloader.setGeometry(QRect(180, 180, 321, 231))
         self.downloader.setAutoFillBackground(True)
         self.episodes = EpisodesWidget(self.centralwidget)
         self.episodes.setObjectName(u"episodes")
-        self.episodes.setGeometry(QRect(480, 60, 281, 361))
+        self.episodes.setGeometry(QRect(510, 180, 281, 361))
+        self.mediaplayer = MediaPlayerWidget(self.centralwidget)
+        self.mediaplayer.setObjectName(u"mediaplayer")
+        self.mediaplayer.setGeometry(QRect(160, 0, 641, 61))
+        self.horizontalLayoutWidget = QWidget(self.centralwidget)
+        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
+        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 168, 551))
+        self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.pushButton = QPushButton(self.horizontalLayoutWidget)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.gridLayout.addWidget(self.pushButton, 1, 0, 1, 1)
+
+        self.updateTableButton = QPushButton(self.horizontalLayoutWidget)
+        self.updateTableButton.setObjectName(u"updateTableButton")
+
+        self.gridLayout.addWidget(self.updateTableButton, 6, 0, 1, 1)
+
+        self.openXMLButton = QPushButton(self.horizontalLayoutWidget)
+        self.openXMLButton.setObjectName(u"openXMLButton")
+
+        self.gridLayout.addWidget(self.openXMLButton, 3, 0, 1, 1)
+
+        self.label = QLabel(self.horizontalLayoutWidget)
+        self.label.setObjectName(u"label")
+        font = QFont()
+        font.setFamilies([u"Arial Rounded MT Bold"])
+        font.setPointSize(19)
+        self.label.setFont(font)
+
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+
+
+        self.horizontalLayout_2.addLayout(self.gridLayout)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 800, 24))
+        self.menuMenu = QMenu(self.menubar)
+        self.menuMenu.setObjectName(u"menuMenu")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        self.menubar.addAction(self.menuMenu.menuAction())
+        self.menuMenu.addAction(self.actionQAction1)
+        self.menuMenu.addAction(self.actionQAction2)
+        self.menuMenu.addAction(self.actionQAction3)
+
         self.retranslateUi(MainWindow)
         self.pushButton.clicked.connect(MainWindow.createNewWindow)
         self.openXMLButton.clicked.connect(self.downloader.onSendFilepathSignal)
         self.downloader.sendSelectedFilePathSignal.connect(self.episodes.refreshEpisodesFromXML)
+        self.episodes.sendSelectedMediaUrlSignal.connect(self.mediaplayer.setPlayingMedia)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.updateTableButton.setText(QCoreApplication.translate("MainWindow", u"todo", None))
-        self.openXMLButton.setText(QCoreApplication.translate("MainWindow", u"Open the xml file", None))
+        self.actionQAction1.setText(QCoreApplication.translate("MainWindow", u"QAction1", None))
+        self.actionQAction2.setText(QCoreApplication.translate("MainWindow", u"QAction2", None))
+        self.actionQAction3.setText(QCoreApplication.translate("MainWindow", u"QAction3", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Create New Window", None))
+        self.updateTableButton.setText(QCoreApplication.translate("MainWindow", u"todo...", None))
+        self.openXMLButton.setText(QCoreApplication.translate("MainWindow", u"Open the xml file", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Podcast player", None))
+        self.menuMenu.setTitle(QCoreApplication.translate("MainWindow", u"Menu", None))
     # retranslateUi
 
