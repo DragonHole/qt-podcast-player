@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OboeWindow</class>
+ <widget class="QMainWindow" name="OboeWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>383</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Oboe Podcast Manager</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QFrame" name="navPane">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QToolButton" name="navSubscriptions">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Subscriptions</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="navSearch">
+         <property name="text">
+          <string>Search</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="navSummary">
+         <property name="text">
+          <string>Summary</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="navNowPlaying">
+         <property name="text">
+          <string>Now Playing</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QFrame" name="nowPlayingPane">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QToolButton" name="jumpBack">
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="pausePlay">
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="jumpForward">
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="skipCurrent">
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="timeline">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="currentEpisodePosition">
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>/</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="currentEpisodeLength">
+         <property name="text">
+          <string>-</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="SubscriptionsPage">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTableView" name="subscriptionsList">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustToContents</enum>
+          </property>
+          <property name="showGrid">
+           <bool>false</bool>
+          </property>
+          <property name="sortingEnabled">
+           <bool>false</bool>
+          </property>
+          <attribute name="horizontalHeaderDefaultSectionSize">
+           <number>100</number>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="SearchPage">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item row="0" column="1">
+         <widget class="QToolButton" name="searchStart">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QTableView" name="searchResults"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLineEdit" name="searchEntry"/>
+        </item>
+        <item row="2" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="resources.qrc">:/icons/listennotes_logo.png</pixmap>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="PlaylistsPage">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QListView" name="playlistsList"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="SummaryPage">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Summary Page</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="NowPlayingPage">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTableView" name="queueList">
+          <property name="showGrid">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="EpisodesPage">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTableView" name="episodeView">
+          <property name="showGrid">
+           <bool>true</bool>
+          </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>650</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuSubscriptions">
+    <property name="title">
+     <string>Subscriptions</string>
+    </property>
+    <addaction name="actionAdd_URL"/>
+    <addaction name="actionUpdate_subscriptions"/>
+   </widget>
+   <widget class="QMenu" name="menuOboe">
+    <property name="title">
+     <string>Oboe</string>
+    </property>
+    <addaction name="showSettings"/>
+    <addaction name="exitProgram"/>
+   </widget>
+   <addaction name="menuOboe"/>
+   <addaction name="menuSubscriptions"/>
+  </widget>
+  <action name="goToSubscriptions">
+   <property name="icon">
+    <iconset>
+     <normalon>:/icons/subscriptions.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Go To Subscriptions Page</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to the subscriptions information page</string>
+   </property>
+  </action>
+  <action name="goToSearch">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
+   </property>
+   <property name="text">
+    <string>Go To Search</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to the search page</string>
+   </property>
+  </action>
+  <action name="goToSummary">
+   <property name="icon">
+    <iconset>
+     <normalon>:/icons/summary.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Go To Summary</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to the summary screen</string>
+   </property>
+  </action>
+  <action name="goToNowPlaying">
+   <property name="icon">
+    <iconset>
+     <normalon>:/icons/queue.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Go To Now Playing</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to the now playing screen</string>
+   </property>
+  </action>
+  <action name="actionAdd_URL">
+   <property name="text">
+    <string>Add URL</string>
+   </property>
+  </action>
+  <action name="actionUpdate_subscriptions">
+   <property name="text">
+    <string>Update subscriptions</string>
+   </property>
+  </action>
+  <action name="goToEpisodeView">
+   <property name="text">
+    <string>Go To Episode View</string>
+   </property>
+  </action>
+  <action name="downloadEpisode">
+   <property name="text">
+    <string>Download this episode</string>
+   </property>
+  </action>
+  <action name="deleteDownloadedEpisode">
+   <property name="text">
+    <string>Delete downloaded episode</string>
+   </property>
+  </action>
+  <action name="playPodcastEpisode">
+   <property name="text">
+    <string>Play a podcast episode</string>
+   </property>
+  </action>
+  <action name="queuePodcastEpisode">
+   <property name="text">
+    <string>Queue a podcast episode</string>
+   </property>
+  </action>
+  <action name="togglePausePlay">
+   <property name="icon">
+    <iconset>
+     <normalon>:/icons/play.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Pause/Play the current episode</string>
+   </property>
+  </action>
+  <action name="playNext">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/next.png</normaloff>:/icons/next.png</iconset>
+   </property>
+   <property name="text">
+    <string>Next in queue</string>
+   </property>
+  </action>
+  <action name="jumpBackwards">
+   <property name="icon">
+    <iconset>
+     <normalon>:/icons/backward.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Jump backwards in the current episode</string>
+   </property>
+  </action>
+  <action name="jumpForwards">
+   <property name="icon">
+    <iconset>
+     <normalon>:/icons/forward.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Jump forwards in the current episode</string>
+   </property>
+  </action>
+  <action name="performSearch">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/search.png</normaloff>:/icons/search.png</iconset>
+   </property>
+   <property name="text">
+    <string>Perform the online search</string>
+   </property>
+  </action>
+  <action name="appendToQueue">
+   <property name="text">
+    <string>Add to queue</string>
+   </property>
+  </action>
+  <action name="prependToQueue">
+   <property name="text">
+    <string>Play next</string>
+   </property>
+  </action>
+  <action name="markEpisodeUnheard">
+   <property name="text">
+    <string>Mark as unheard</string>
+   </property>
+  </action>
+  <action name="markEpisodeListenedTo">
+   <property name="text">
+    <string>Mark as listened to</string>
+   </property>
+  </action>
+  <action name="showSettings">
+   <property name="text">
+    <string>Settings...</string>
+   </property>
+  </action>
+  <action name="exitProgram">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+ <slots>
+  <slot>showPodcastEpisodes(QModelIndex)</slot>
+ </slots>
+</ui>
