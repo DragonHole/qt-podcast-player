@@ -1,7 +1,11 @@
 # ignore ALL .log files
 *.pyc
 .gitignore
+database.db
+.DS_Store
 
 # ignore ALL files in ANY directory named temp
 temp/
 __pycache__/
+build/
+dist/

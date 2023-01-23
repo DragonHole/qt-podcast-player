@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>805</width>
     <height>600</height>
    </rect>
   </property>
@@ -17,10 +17,10 @@
    <widget class="DownloaderWidget" name="downloader" native="true">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>180</y>
-      <width>321</width>
-      <height>231</height>
+      <x>170</x>
+      <y>70</y>
+      <width>261</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -30,10 +30,10 @@
    <widget class="EpisodesWidget" name="episodes" native="true">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>180</y>
-      <width>281</width>
-      <height>361</height>
+      <x>440</x>
+      <y>70</y>
+      <width>351</width>
+      <height>481</height>
      </rect>
     </property>
    </widget>
@@ -47,55 +47,64 @@
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget">
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>168</width>
+      <width>161</width>
       <height>551</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="1" column="0">
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>Create New Window</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QPushButton" name="updateTableButton">
-         <property name="text">
-          <string>todo...</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QPushButton" name="openXMLButton">
-         <property name="text">
-          <string>Open the xml file</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label">
-         <property name="font">
-          <font>
-           <family>Arial Rounded MT Bold</family>
-           <pointsize>19</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Podcast player</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
+    <property name="title">
+     <string>Podcasts</string>
+    </property>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>166</width>
+       <height>531</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Arial Rounded MT Bold</family>
+          <pointsize>19</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Podcast player</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="openXMLButton">
+        <property name="text">
+         <string>Open the xml file</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="updateTableButton">
+        <property name="text">
+         <string>todo...</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton">
+        <property name="text">
+         <string>Create New Window</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -103,7 +112,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>805</width>
      <height>24</height>
     </rect>
    </property>

@@ -16,9 +16,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QMainWindow, QMenu, QMenuBar, QPushButton,
-    QSizePolicy, QStatusBar, QWidget)
+from PySide6.QtWidgets import (QApplication, QGroupBox, QLabel, QMainWindow,
+    QMenu, QMenuBar, QPushButton, QSizePolicy,
+    QStatusBar, QVBoxLayout, QWidget)
 
 from downloaderwidget import DownloaderWidget
 from episodeswidget import EpisodesWidget
@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(805, 600)
         self.actionQAction1 = QAction(MainWindow)
         self.actionQAction1.setObjectName(u"actionQAction1")
         self.actionQAction2 = QAction(MainWindow)
@@ -39,53 +39,51 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.downloader = DownloaderWidget(self.centralwidget)
         self.downloader.setObjectName(u"downloader")
-        self.downloader.setGeometry(QRect(180, 180, 321, 231))
+        self.downloader.setGeometry(QRect(170, 70, 261, 481))
         self.downloader.setAutoFillBackground(True)
         self.episodes = EpisodesWidget(self.centralwidget)
         self.episodes.setObjectName(u"episodes")
-        self.episodes.setGeometry(QRect(510, 180, 281, 361))
+        self.episodes.setGeometry(QRect(440, 70, 351, 481))
         self.mediaplayer = MediaPlayerWidget(self.centralwidget)
         self.mediaplayer.setObjectName(u"mediaplayer")
         self.mediaplayer.setGeometry(QRect(160, 0, 641, 61))
-        self.horizontalLayoutWidget = QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(0, 0, 168, 551))
-        self.horizontalLayout_2 = QHBoxLayout(self.horizontalLayoutWidget)
-        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout = QGridLayout()
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.pushButton = QPushButton(self.horizontalLayoutWidget)
-        self.pushButton.setObjectName(u"pushButton")
-
-        self.gridLayout.addWidget(self.pushButton, 1, 0, 1, 1)
-
-        self.updateTableButton = QPushButton(self.horizontalLayoutWidget)
-        self.updateTableButton.setObjectName(u"updateTableButton")
-
-        self.gridLayout.addWidget(self.updateTableButton, 6, 0, 1, 1)
-
-        self.openXMLButton = QPushButton(self.horizontalLayoutWidget)
-        self.openXMLButton.setObjectName(u"openXMLButton")
-
-        self.gridLayout.addWidget(self.openXMLButton, 3, 0, 1, 1)
-
-        self.label = QLabel(self.horizontalLayoutWidget)
+        self.groupBox = QGroupBox(self.centralwidget)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setGeometry(QRect(0, 0, 161, 551))
+        self.verticalLayoutWidget = QWidget(self.groupBox)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayoutWidget.setGeometry(QRect(0, 20, 166, 531))
+        self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.label = QLabel(self.verticalLayoutWidget)
         self.label.setObjectName(u"label")
         font = QFont()
         font.setFamilies([u"Arial Rounded MT Bold"])
         font.setPointSize(19)
         self.label.setFont(font)
 
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.verticalLayout.addWidget(self.label)
 
+        self.openXMLButton = QPushButton(self.verticalLayoutWidget)
+        self.openXMLButton.setObjectName(u"openXMLButton")
 
-        self.horizontalLayout_2.addLayout(self.gridLayout)
+        self.verticalLayout.addWidget(self.openXMLButton)
+
+        self.updateTableButton = QPushButton(self.verticalLayoutWidget)
+        self.updateTableButton.setObjectName(u"updateTableButton")
+
+        self.verticalLayout.addWidget(self.updateTableButton)
+
+        self.pushButton = QPushButton(self.verticalLayoutWidget)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.verticalLayout.addWidget(self.pushButton)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 24))
+        self.menubar.setGeometry(QRect(0, 0, 805, 24))
         self.menuMenu = QMenu(self.menubar)
         self.menuMenu.setObjectName(u"menuMenu")
         MainWindow.setMenuBar(self.menubar)
@@ -112,10 +110,11 @@ class Ui_MainWindow(object):
         self.actionQAction1.setText(QCoreApplication.translate("MainWindow", u"QAction1", None))
         self.actionQAction2.setText(QCoreApplication.translate("MainWindow", u"QAction2", None))
         self.actionQAction3.setText(QCoreApplication.translate("MainWindow", u"QAction3", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Create New Window", None))
-        self.updateTableButton.setText(QCoreApplication.translate("MainWindow", u"todo...", None))
-        self.openXMLButton.setText(QCoreApplication.translate("MainWindow", u"Open the xml file", None))
+        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Podcasts", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Podcast player", None))
+        self.openXMLButton.setText(QCoreApplication.translate("MainWindow", u"Open the xml file", None))
+        self.updateTableButton.setText(QCoreApplication.translate("MainWindow", u"todo...", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Create New Window", None))
         self.menuMenu.setTitle(QCoreApplication.translate("MainWindow", u"Menu", None))
     # retranslateUi
 

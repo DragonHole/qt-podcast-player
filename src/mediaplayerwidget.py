@@ -5,13 +5,13 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QSlider,
     QLabel,
-    QPushButton
+    QPushButton,
+    QStyle, 
+    QGroupBox
 )
-
+from PySide6.QtGui import QAction, QIcon, QKeySequence, QScreen
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
-
 from PySide6.QtCore import Slot, QXmlStreamReader, QIODevice, QFile, Qt, QUrl, Signal
-
 from util import class_name, init_widget, embed_into_vbox_layout
 
 DIR_OPEN_ICON = ":/qt-project.org/styles/commonstyle/images/diropen-128.png"
@@ -32,16 +32,19 @@ class MediaPlayerWidget(QWidget):
         self._media_player = QMediaPlayer()
         self._media_player.setAudioOutput(self._audio_output)
         
+        style = self.style()
+        groupHBox = QGroupBox(self)
+        # groupHBox.setFixedWidth(500)
         # connect player error
-        layout = QHBoxLayout(self)
+        layout = QHBoxLayout(groupHBox)
         #layout.setSpacing(5)
         self._back15SButton = QPushButton("<15")
         self._forw15SButton = QPushButton(">15")
-        self._playButton = QPushButton("Play/Pause")
+        self._playButton = QPushButton("", icon=QIcon.fromTheme("media-playback-start.png",
+                               style.standardIcon(QStyle.SP_MediaPlay)))
         layout.addWidget(self._back15SButton)
         layout.addWidget(self._playButton)
         layout.addWidget(self._forw15SButton)
-
         
         self._volume_slider = QSlider()
         self._volume_slider.setOrientation(Qt.Horizontal)
@@ -61,6 +64,9 @@ class MediaPlayerWidget(QWidget):
         layout.addWidget(self._label)
         
         self._playButton.clicked.connect(self.togglePlayButton)
+        self._back15SButton.clicked.connect(self.toggleBack15SButton)
+        self._forw15SButton.clicked.connect(self.toggleForw15SButton)
+        
 
     # because slider handles only integers, but AudioOutput needs a volume in range [0, 1]
     @Slot()
@@ -69,17 +75,24 @@ class MediaPlayerWidget(QWidget):
     
     @Slot()
     def togglePlayButton(self):
-        print("toggled play button")
-        print(self._audio_output.volume())
-        if self._media_player.playbackState() == QMediaPlayer.StoppedState:
+        if self._media_player.playbackState() == QMediaPlayer.PausedState:
             self._media_player.play()
         else:
-            self._media_player.stop()
+            self._media_player.pause()
+            
+    @Slot()
+    def toggleBack15SButton(self):
+        self._media_player.setPosition(self._media_player.position() - 15*1000)
+    
+    @Slot()
+    def toggleForw15SButton(self):
+        self._media_player.setPosition(self._media_player.position() + 15*1000)
         
     @Slot()
     def setPlayingMedia(self, url):
-        print(url)
+        
         self._media_player.setSource(QUrl(url))
         self._media_player.play()
 
+    
         

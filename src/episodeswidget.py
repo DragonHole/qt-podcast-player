@@ -23,10 +23,11 @@ COMPUTER_ICON = ":/qt-project.org/styles/commonstyle/images/computer-32.png"
 class EpisodesWidget(QWidget):
     sendSelectedMediaUrlSignal = Signal(QUrl)
     
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, animationDuration=100):
         super().__init__(parent)
 
         self.xml_file = None
+        self.animationDuration = animationDuration
 
         #self.list_model = QStandardItemModel(0, 1, self)
         self.list_model = EpisodesDataModel()
@@ -99,7 +100,7 @@ class EpisodesWidget(QWidget):
     def playEpisode(self):
         selected_episodes = self.list_view.selectedIndexes()
         if selected_episodes:
-            index = selected_episodes[0] # only play 1 selection
+            index = selected_episodes[0] # only play 1 selection even if multiple are selected
             episode_url = self.list_model.data(index, Qt.UserRole)
             self.sendSelectedMediaUrlSignal.emit(episode_url)
             print('sent signal')
